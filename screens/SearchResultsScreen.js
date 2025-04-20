@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
   },
   itemPrice: {
     fontSize: 16,
-    color: '#53B175',
+    color: '#181725',
     marginTop: 5,
   },
   addButton: {

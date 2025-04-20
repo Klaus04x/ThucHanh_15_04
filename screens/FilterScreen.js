@@ -56,43 +56,43 @@ const FilterScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <ScrollView style={styles.scrollView}>
-        <Text style={styles.sectionTitle}>Danh Mục</Text>
+        <Text style={styles.sectionTitle}>Categories</Text>
         <View style={styles.filterItem}>
           <CustomCheckbox
             isChecked={filters.category.eggs}
             onPress={() => handleCategoryChange('eggs')}
           />
-          <Text style={styles.filterText}>Trứng</Text>
+          <Text style={styles.filterText}>Egg</Text>
         </View>
         <View style={styles.filterItem}>
           <CustomCheckbox
             isChecked={filters.category.noodlesPasta}
             onPress={() => handleCategoryChange('noodlesPasta')}
           />
-          <Text style={styles.filterText}>Mì & Pasta</Text>
+          <Text style={styles.filterText}>Noodles & Pasta</Text>
         </View>
         <View style={styles.filterItem}>
           <CustomCheckbox
             isChecked={filters.category.chipsCrisps}
             onPress={() => handleCategoryChange('chipsCrisps')}
           />
-          <Text style={styles.filterText}>Khoai Tây Chiên & Snack</Text>
+          <Text style={styles.filterText}>Chips & Crisps</Text>
         </View>
         <View style={styles.filterItem}>
           <CustomCheckbox
             isChecked={filters.category.fastFood}
             onPress={() => handleCategoryChange('fastFood')}
           />
-          <Text style={styles.filterText}>Đồ Ăn Nhanh</Text>
+          <Text style={styles.filterText}>Fast Food</Text>
         </View>
 
-        <Text style={styles.sectionTitle}>Thương Hiệu</Text>
+        <Text style={styles.sectionTitle}>Brand</Text>
         <View style={styles.filterItem}>
           <CustomCheckbox
             isChecked={filters.brand.individualCollection}
             onPress={() => handleBrandChange('individualCollection')}
           />
-          <Text style={styles.filterText}>Bộ Sưu Tập Cá Nhân</Text>
+          <Text style={styles.filterText}>Individual Callection</Text>
         </View>
         <View style={styles.filterItem}>
           <CustomCheckbox
