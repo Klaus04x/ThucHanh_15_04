@@ -1,5 +1,5 @@
 // screens/SearchResultsScreen.js
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
@@ -10,30 +10,27 @@ import {
   TextInput,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-
-// Dữ liệu giả lập cho kết quả tìm kiếm
-const searchResults = [
-  { id: '1', name: 'Egg Chicken Red', weight: '4pcs, Price', price: 1.99, image: require('../assets/images/egg-chicken-red.png') },
-  { id: '2', name: 'Egg Chicken White', weight: '180g, Price', price: 1.50, image: require('../assets/images/egg-chicken-white.png') },
-  { id: '3', name: 'Egg Pasta', weight: '30gm, Price', price: 15.99, image: require('../assets/images/egg-pasta.png') },
-  { id: '4', name: 'Egg Noodles', weight: '2L, Price', price: 15.99, image: require('../assets/images/egg-noodles.png') },
-  { id: '5', name: 'Mayonnaise Eggless', weight: '325ml, Price', price: 4.99, image: require('../assets/images/mayonnaise-eggless.png') },
-  { id: '6', name: 'Egg Noodles', weight: '330ml, Price', price: 4.99, image: require('../assets/images/egg-noodles-2.png') },
-];
+import products from '../data.js'; // Nhập danh sách sản phẩm từ data.js
 
 const SearchResultsScreen = ({ route, navigation }) => {
-  const { query } = route.params || {}; // Nhận từ khóa tìm kiếm từ tham số
+  const { query } = route.params || {}; // Nhận từ khóa tìm kiếm từ ExploreScreen
+  const [searchQuery, setSearchQuery] = useState(query || ''); // State quản lý từ khóa tìm kiếm
+  const [filteredProducts, setFilteredProducts] = useState(products); // State quản lý danh sách sản phẩm đã lọc
 
-  // Lọc dữ liệu dựa trên từ khóa tìm kiếm
-  const filteredResults = query
-    ? searchResults.filter(item =>
-        item.name.toLowerCase().includes(query.toLowerCase())
-      )
-    : searchResults;
+  // Lọc sản phẩm khi từ khóa tìm kiếm thay đổi
+  useEffect(() => {
+    const filtered = products.filter((item) =>
+      item.name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+    setFilteredProducts(filtered);
+  }, [searchQuery]);
 
   const handleFilterPress = () => {
-    // Điều hướng đến FilterScreen
     navigation.navigate('Filter');
+  };
+
+  const handleSearchChange = (text) => {
+    setSearchQuery(text); // Cập nhật từ khóa tìm kiếm
   };
 
   const renderItem = ({ item }) => (
@@ -52,13 +49,13 @@ const SearchResultsScreen = ({ route, navigation }) => {
 
   return (
     <View style={styles.container}>
-      {/* Search Bar */}
+      {/* Thanh tìm kiếm */}
       <View style={styles.searchContainer}>
         <TextInput
           style={styles.searchInput}
-          placeholder="Search"
-          value={query || ''} // Hiển thị từ khóa tìm kiếm
-          editable={false} // Tạm thời không cho chỉnh sửa
+          placeholder="Tìm kiếm sản phẩm"
+          value={searchQuery}
+          onChangeText={handleSearchChange} // Cập nhật từ khóa tìm kiếm khi người dùng nhập
         />
         <TouchableOpacity onPress={handleFilterPress} style={styles.filterIcon}>
           <Icon name="filter-list" size={24} color="#666" />
@@ -67,7 +64,7 @@ const SearchResultsScreen = ({ route, navigation }) => {
 
       {/* Danh sách sản phẩm */}
       <FlatList
-        data={filteredResults}
+        data={filteredProducts}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
         numColumns={2}
@@ -79,12 +76,12 @@ const SearchResultsScreen = ({ route, navigation }) => {
 
 const styles = StyleSheet.create({
   container: {
+    paddingTop: 40,
     flex: 1,
     padding: 10,
     backgroundColor: '#fff',
   },
   searchContainer: {
-    marginTop:30,
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: '#F2F3F2',
@@ -128,7 +125,7 @@ const styles = StyleSheet.create({
   },
   itemPrice: {
     fontSize: 16,
-    color: '#181725',
+    color: '#53B175',
     marginTop: 5,
   },
   addButton: {
@@ -138,7 +135,6 @@ const styles = StyleSheet.create({
     marginTop: 5,
   },
   addButtonText: {
-    margin: 5,
     color: '#fff',
     fontSize: 18,
   },
