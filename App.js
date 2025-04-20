@@ -22,6 +22,8 @@ import BeveragesScreen from './screens/BeveragesScreen';
 import CartScreen from './screens/CartScreen';
 import FavouriteScreen from './screens/FavouriteScreen';
 import AccountScreen from './screens/AccountScreen';
+import SearchResultsScreen from './screens/SearchResultsScreen';
+import FilterScreen from './screens/FilterScreen';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -78,6 +80,7 @@ function MainTabs() {
 }
 
 // Stack Navigator cho HomeScreen và ProductDetailScreen
+// Trong App.js
 function HomeStack() {
   return (
     <Stack.Navigator>
@@ -89,6 +92,16 @@ function HomeStack() {
       <Stack.Screen
         name="ProductDetail"
         component={ProductDetailScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="SearchResults"
+        component={SearchResultsScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="Filter"
+        component={FilterScreen}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>

@@ -1,7 +1,29 @@
-import React from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image, TextInput } from 'react-native';
+// screens/ExploreScreen.js
+import React, { useState } from 'react';
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  TouchableOpacity,
+  Image,
+  TextInput,
+} from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 export default function ExploreScreen({ navigation }) {
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const handleSearch = () => {
+    if (searchQuery.trim()) {
+      // Navigate to SearchResults screen inside HomeStack
+      navigation.navigate('HomeTab', {
+        screen: 'SearchResults',
+        params: { query: searchQuery },
+      });
+    }
+  };
+
   return (
     <View style={styles.container}>
       {/* Search Bar */}
@@ -10,7 +32,13 @@ export default function ExploreScreen({ navigation }) {
           style={styles.searchInput}
           placeholder="Search Store"
           placeholderTextColor="#666"
+          value={searchQuery}
+          onChangeText={setSearchQuery}
+          onSubmitEditing={handleSearch}
         />
+        <TouchableOpacity onPress={handleSearch} style={styles.searchIcon}>
+          <Icon name="search" size={24} color="#666" />
+        </TouchableOpacity>
       </View>
 
       {/* Categories */}
@@ -18,14 +46,14 @@ export default function ExploreScreen({ navigation }) {
         <View style={styles.categoryRow}>
           <TouchableOpacity style={styles.categoryCard}>
             <Image
-              source={require('../assets/images/vegetables.png')} // Thay bằng ảnh rau củ
+              source={require('../assets/images/vegetables.png')}
               style={styles.categoryImage}
             />
             <Text style={styles.categoryName}>Fresh Fruits & Vegetable</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.categoryCard}>
             <Image
-              source={require('../assets/images/oil.png')} // Thay bằng ảnh dầu ăn
+              source={require('../assets/images/oil.png')}
               style={styles.categoryImage}
             />
             <Text style={styles.categoryName}>Cooking Oil & Ghee</Text>
@@ -34,14 +62,14 @@ export default function ExploreScreen({ navigation }) {
         <View style={styles.categoryRow}>
           <TouchableOpacity style={styles.categoryCard}>
             <Image
-              source={require('../assets/images/meat.png')} // Thay bằng ảnh thịt
+              source={require('../assets/images/meat.png')}
               style={styles.categoryImage}
             />
             <Text style={styles.categoryName}>Meat & Fish</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.categoryCard}>
             <Image
-              source={require('../assets/images/snacks.png')} // Thay bằng ảnh đồ ăn vặt
+              source={require('../assets/images/snacks.png')}
               style={styles.categoryImage}
             />
             <Text style={styles.categoryName}>Bakery & Snacks</Text>
@@ -50,7 +78,7 @@ export default function ExploreScreen({ navigation }) {
         <View style={styles.categoryRow}>
           <TouchableOpacity style={styles.categoryCard}>
             <Image
-              source={require('../assets/images/dairy.png')} // Thay bằng ảnh sữa
+              source={require('../assets/images/dairy.png')}
               style={styles.categoryImage}
             />
             <Text style={styles.categoryName}>Dairy & Eggs</Text>
@@ -60,7 +88,7 @@ export default function ExploreScreen({ navigation }) {
             onPress={() => navigation.navigate('Beverages')}
           >
             <Image
-              source={require('../assets/images/beverages.png')} // Thay bằng ảnh đồ uống
+              source={require('../assets/images/beverages.png')}
               style={styles.categoryImage}
             />
             <Text style={styles.categoryName}>Beverages</Text>
@@ -77,15 +105,23 @@ const styles = StyleSheet.create({
     backgroundColor: '#F5F5F5',
   },
   searchContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
     backgroundColor: '#F2F3F2',
     borderRadius: 10,
     margin: 20,
     paddingHorizontal: 10,
   },
   searchInput: {
+    paddingTop:30,
+    flex: 1,
     height: 50,
     fontSize: 16,
     color: '#000',
+  },
+  searchIcon: {
+    marginTop:30,
+    padding: 10,
   },
   categoryRow: {
     flexDirection: 'row',
