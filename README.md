@@ -1,5 +1,5 @@
 ## Họ và tên: Nguyễn Tiến Thanh
-## MSV: 228103103882
+## MSV: 22810310382
 ## Kết quả:
 ## Trang SplashScreen
 ![](./assets/pages/SplashScreen.jpg)
@@ -25,3 +25,7 @@
 ![](./assets/pages/ExploreScreen.jpg)
 ## Trang ProductDetailScreen
 ![](./assets/pages/ProductDetailScreen.jpg)
+## Trang Search
+![](./assets/pages/SearchResultsScreen.jpg)
+## Trang Filters
+![](./assets/pages/FilterScreen.jpg)
