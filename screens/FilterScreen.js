@@ -118,7 +118,7 @@ const FilterScreen = ({ navigation }) => {
       </ScrollView>
 
       <TouchableOpacity style={styles.applyButton} onPress={applyFilters}>
-        <Text style={styles.applyButtonText}>Áp Dụng Bộ Lọc</Text>
+        <Text style={styles.applyButtonText}>Apply Filter</Text>
       </TouchableOpacity>
     </View>
   );
