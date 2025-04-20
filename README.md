@@ -25,3 +25,7 @@
 ![](./assets/pages/ExploreScreen.jpg)
 ## Trang ProductDetailScreen
 ![](./assets/pages/ProductDetailScreen.jpg)
+## Trang Search
+![](./assets/pages/SearchResultsScreen.jpg)
+## Trang Filters
+![](./assets/pages/FilterScreen.jpg)
