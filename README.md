@@ -29,3 +29,7 @@
 ![](./assets/pages/SearchResultsScreen.jpg)
 ## Trang Filters
 ![](./assets/pages/FilterScreen.jpg)
+## Trang Cart
+![](./assets/pages/CartScreen.jpg)
+## Trang Favourite
+![](./assets/pages/FavouriteScreen.jpg)
